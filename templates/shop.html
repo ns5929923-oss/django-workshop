@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+*{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+
+}
+.main{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+body{
+    background-color: #618764;
+}
+.product{
+    background-color: oldlace;
+    border: 1px solid black;
+    margin:20px;
+    width: 190px;
+    height: 250px;
+    border-radius: 20px;
+    padding: 40px;
+    align-content: center;
+    color: rebeccapurple;
+
+}
+.product:hover{
+    box-shadow: 10px 10px 10px #273338;
+}
+
+img{
+    width:180px ;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0px 8px 20px #618764;
+    
+}
+img:hover{
+    transition-duration: 0.3s;
+     transform: scale(1.1);
+     
+}
+
+.btn{
+    background-color:white;
+    color: black;
+    width: 150px;
+    height: 25px;
+    border: 1px solid brown;
+    border-radius: 20px;
+}
+.btn:hover{
+
+    background-color: palevioletred;
+    color:white;
+    border: 1px solid white;
+}
+
+</style>
+
+</head>
+<body>
+    {% include 'menu.html' %}
+
+    <h1
+        style="color: #273338; font-size:20px;"> Lets Goooo!
+    </h1>
+    <!--Content Start -->
+    <div class="main">
+        <!--Product start-->
+        <div class="product">
+            <img src="{% static 'dress1.jpg' %}" class="center"/>
+            
+            <h3>
+                Black Mid Length
+            </h3>
+            <p>₹5000</p>
+            <input type ="button" class="btn" value="Buy Now"/>
+            </div>
+        <!--Product End-->
+
+        <!--Product start-->
+        <div class="product">
+            <img src="{% static 'dress2.avif' %}" class="center"/>
+            
+            <h3>
+                Green Mid-thigh
+            </h3>
+            <p>₹3000</p>
+            <input type ="button" class="btn" value="Buy Now"/>
+            </div>
+        <!--Product End-->
+
+        <!--Product start-->
+        <div class="product">
+            <img src="{% static 'dress3.jpg' %}" class="center"/>
+            
+            <h3>
+                Black Flares
+            </h3>
+            <p>₹1900</p>
+            <input type ="button" class="btn" value="Buy Now"/>
+            </div>
+        <!--Product End-->
+
+        <!--Product start-->
+        <div class="product">
+            <img src="{% static 'dress4.jpg' %}" class="center"/>
+            
+            <h3>
+                Green Off-Shoulder
+            </h3>
+            <p>₹6000</p>
+            <input type ="button" class="btn" value="Buy Now"/>
+            </div>
+        <!--Product End-->
+
+        <!--Product start-->
+        <div class="product">
+            <img src="{% static 'dress5.jpg' %}" class="center"/>
+            
+            <h3>
+                Mid-thigh Collar
+            </h3>
+            <p>₹2500</p>
+            <input type ="button" class="btn" value="Buy Now"/>
+            </div>
+        <!--Product End-->
+
+        <!--Product start-->
+        <div class="product">
+            <img src="{% static 'dress6.jpg' %}" class="center"/>
+            
+            <h3>
+                Full lenght amber
+            </h3>
+            <p>₹4500</p>
+            <input type ="button" class="btn" value="Buy Now"/>
+            </div>
+        <!--Product End-->
+</div>
+    <!--Content End -->
+</body>
+
+</html>
