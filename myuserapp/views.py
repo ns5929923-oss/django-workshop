@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.conf import settings
 
 def Homepage(request):
     return render(request, "home.html")
@@ -13,21 +15,7 @@ def Contactpage(request):
 def Shoppage(request):
     return render(request, "shop.html")
 
-def createsession(request):
-    request.session['username']= "Cherry"
-    return HttpResponse("session created")
-
-def getsession(request):
-    if request.session.has_key('username'):
-        msg = request.session['username']
-        return HttpResponse(msg)
-    else:
-        return HttpResponse("session is not present")
-    
-def deletesession(request):
-    del request.session['username']
-    return HttpResponse("session removed")
-
+# Marksheet
 
 def contactprocess(request):
     a= int(request.POST['txt1'])
@@ -54,12 +42,32 @@ def contactprocess(request):
 
     return render(request, 'result.html',{'mya':a, 'myb':b, 'myc': c, 'myd':d, 'mye':e, 'myf':f, 'myg':g, 'result':result})
 
+# Session management
+
+def createsession(request):
+    request.session['username']= "Cherry"
+    return HttpResponse("session created")
+
+def getsession(request):
+    if request.session.has_key('username'):
+        msg = request.session['username']
+        return HttpResponse(msg)
+    else:
+        return HttpResponse("session is not present")
+    
+def deletesession(request):
+    del request.session['username']
+    return HttpResponse("session removed")
+
+# Session & login
+
 def loginpage(request):
     return render(request, 'login.html')
 
 def loginprocess(request):
     txt= request.POST['email']
     request.session['myemail']=txt
+   
     return redirect(dashboard)
 
 def dashboard(request):
@@ -71,4 +79,39 @@ def dashboard(request):
 def logout(request):
     del request.session['myemail']
     return redirect(loginpage)
+
+# Static mail sending process
+
+def maildemo(request):
+    subject = 'Django masil demo'
+    message = 'code sucessfully run'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = ['nehasinghtomar239@gmail.com']
+    send_mail(subject, message, email_from, recipient_list)
+    return HttpResponse("Mail Sent")
+ 
+ # Dynamic mail sending process
+def mailsendprocess(request):
+    subject = request.POST['txt7']
+    message = request.POST['txt8']
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [request.POST['txt6'],]
+    send_mail(subject, message, email_from, recipient_list)
+    return HttpResponse("Mail Sent")
+    
+def contactpageview(request):
+    return render(request, 'contactus.html')
+
+
+# Page refresh counter
+
+def count(request):
+    if request.session.has_key('count'):
+        request.session['count'] += 1
+    else:
+        request.session['count'] = 1
+
+    return HttpResponse(f"Page refreshed {request.session['count']} times")
+
+
 

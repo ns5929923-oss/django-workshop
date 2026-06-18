@@ -8,6 +8,7 @@ urlpatterns=[
     path('Contactpage',views.Contactpage),
     path('Shoppage',views.Shoppage),
     path('contactprocess', views.contactprocess),
+    
     path('setsession', views.createsession),
     path('getsession', views.getsession),
     path('deletesession', views.deletesession),
@@ -15,8 +16,12 @@ urlpatterns=[
     path('loginpage', views.loginpage),
     path('loginprocess', views.loginprocess),
     path('dashboard', views.dashboard),
-    path('logout', views.logout)
+    path('logout', views.logout),
     
+    path('maildemo', views.maildemo),
+    path('process', views.mailsendprocess, name='process'),
+    path('contactus', views.contactpageview, name='contactus'),
 
+    path('counts', views.count)
 
 ]
