@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 
 def Homepage(request):
@@ -12,6 +12,22 @@ def Contactpage(request):
 
 def Shoppage(request):
     return render(request, "shop.html")
+
+def createsession(request):
+    request.session['username']= "Cherry"
+    return HttpResponse("session created")
+
+def getsession(request):
+    if request.session.has_key('username'):
+        msg = request.session['username']
+        return HttpResponse(msg)
+    else:
+        return HttpResponse("session is not present")
+    
+def deletesession(request):
+    del request.session['username']
+    return HttpResponse("session removed")
+
 
 def contactprocess(request):
     a= int(request.POST['txt1'])
@@ -37,3 +53,22 @@ def contactprocess(request):
         result= "You failed!"
 
     return render(request, 'result.html',{'mya':a, 'myb':b, 'myc': c, 'myd':d, 'mye':e, 'myf':f, 'myg':g, 'result':result})
+
+def loginpage(request):
+    return render(request, 'login.html')
+
+def loginprocess(request):
+    txt= request.POST['email']
+    request.session['myemail']=txt
+    return redirect(dashboard)
+
+def dashboard(request):
+    if request.session.has_key('myemail'):
+        return render(request, "dashboard.html")
+    else:
+        return redirect(loginpage)
+    
+def logout(request):
+    del request.session['myemail']
+    return redirect(loginpage)
+
