@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.conf import settings
+from . models import student
 
 def Homepage(request):
     return render(request, "home.html")
@@ -115,3 +116,38 @@ def count(request):
 
 
 
+# Database
+def studentform(request):
+    return render(request, 'signup.html')
+
+def studentformprocess(request):
+    txt1=request.POST['txt1']
+    txt2=request.POST['txt2']
+    txt3=request.POST['txt3']
+    txt4=request.POST['txt4']
+    txt5=request.POST['txt5']
+    student.objects.create(Name=txt1, Email=txt2, Mobile=txt3,Age=txt4, Address=txt5)
+    return HttpResponse("Thankyou~~")
+
+  #  subject = 'Signed Up'
+    message = 'Successfully Signed Up'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [request.POST['txt2'],]
+    send_mail(subject, message, email_from, recipient_list)
+   
+
+    subject = 'Alert'
+    message = 'Someone signed up'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = ['nehasinghtomar239@gmail.com']
+    send_mail(subject, message, email_from, recipient_list)
+
+def display_student(request):
+    studentlist= student.objects.all()
+    return render (request, 'display-student.html', {'student': studentlist}) 
+
+def delete_student(request, id):
+    student.objects.get(id=id).delete()
+    return redirect('display_student')
+       
+   

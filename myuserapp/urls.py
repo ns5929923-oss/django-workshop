@@ -21,7 +21,11 @@ urlpatterns=[
     path('maildemo', views.maildemo),
     path('process', views.mailsendprocess, name='process'),
     path('contactus', views.contactpageview, name='contactus'),
+    path('counts', views.count),
 
-    path('counts', views.count)
+    path('studentform', views.studentform),
+    path('studentformprocess',views.studentformprocess),
+    path('display_student', views.display_student),
+    path('delete_student/<int:id>/', views.delete_student)
 
 ]

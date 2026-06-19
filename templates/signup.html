@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <FORM method="post" action="/studentformprocess">
+    {% csrf_token %}
+
+    Name:<input type="text" name="txt1" required ><br>
+    Email:<input type="email" name="txt2" required ><br>
+    Mobile:<input type="number" name="txt3" required  maxlength="10"><br>
+    Age:<input type="number" name="txt4" required ><br>
+    Address:<input type="text" name="txt5" required ><br>
+    <input type="submit">
+
+   </FORM>
+</body>
+</html>
